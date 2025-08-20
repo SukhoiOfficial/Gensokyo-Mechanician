@@ -1,0 +1,26 @@
+{
+  "structures": [
+    {
+      "structure": "gensokyo_mechanician:copper_vein",
+      "weight": 1
+    },
+    {
+      "structure": "gensokyo_mechanician:tin_vein",
+      "weight": 1
+    },
+    {
+      "structure": "gensokyo_mechanician:zinc_vein",
+      "weight": 1
+    },
+    {
+      "structure": "gensokyo_mechanician:iron_vein",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 114514,
+    "spacing": 20,
+    "separation": 16,
+    "type": "minecraft:random_spread"
+  }
+}
