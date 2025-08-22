@@ -13,6 +13,8 @@ StartupEvents.registry('item',e=>{
     e.create('gensokyo_mechanician:chromate_dust','basic').displayName('铬酸盐粉')
     e.create('gensokyo_mechanician:chromium_oxide_dust','basic').displayName('氧化铬粉')
     e.create('gensokyo_mechanician:chromium_dust','basic').displayName('铬粉')
+    e.create('gensokyo_mechanician:chromium_ingot','basic').displayName('铬锭')
+    e.create('gensokyo_mechanician:chromium_nugget','basic').displayName('铬粒')
     e.create('gensokyo_mechanician:tungstic_acid_dust','basic').displayName('钨酸粉')
     e.create('gensokyo_mechanician:raw_iron_ingot','basic')
     e.create('gensokyo_mechanician:raw_steel_ingot','basic')
@@ -44,7 +46,21 @@ StartupEvents.registry('item',e=>{
     e.create('gensokyo_mechanician:rose_quartz_dust','basic')
     e.create('gensokyo_mechanician:lapis_sheet','basic')
 
-    e.create('gensokyo_mechanician:vein_prospector','basic').displayName('百百世的探矿杖')
+    e.create('gensokyo_mechanician:vein_prospector','basic').displayName('百百世的探矿仪')
+    .maxDamage(3200000)
+    .attachCapability(
+        CapabilityBuilder.ENERGY.customItemStack()
+        .canExtract(() => false)
+        .canReceive(() => true)
+        .receiveEnergy((item, amount, sim) => {
+            const receive = Math.min(3200, amount, item.damageValue)
+            if (item.damageValue > 0 && !sim) {
+                item.damageValue -= receive
+            }
+            return receive
+        })
+        .getEnergyStored(be => { return (320000 - be.damageValue) })
+    )
     e.create('gensokyo_mechanician:copper_berries','basic')
     e.create('gensokyo_mechanician:tin_berries','basic')
     e.create('gensokyo_mechanician:zinc_berries','basic')

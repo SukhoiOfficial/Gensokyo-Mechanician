@@ -1,3 +1,19 @@
+global.copperSpreader = global.copperSpreader || { byDim: {}, counters: {} };
+global.tinSpreader = global.tinSpreader || { byDim: {}, counters: {} };
+global.zincSpreader = global.zincSpreader || { byDim: {}, counters: {} };
+global.ironSpreader = global.ironSpreader || { byDim: {}, counters: {} };
+global.aluminumSpreader = global.aluminumSpreader || { byDim: {}, counters: {} };
+global.nickelSpreader = global.nickelSpreader || { byDim: {}, counters: {} };
+global.tungstenSpreader = global.tungstenSpreader || { byDim: {}, counters: {} };
+
+function dimKey(level) {
+  return String(level.dimension);
+}
+
+function posKey(x, y, z) {
+  return `${x},${y},${z}`;
+}
+
 StartupEvents.registry('block',e=>{
 
     //废案：铬矿石（附注释）
@@ -35,51 +51,178 @@ StartupEvents.registry('block',e=>{
     .soundType('wood')
 
     e.create("gensokyo_mechanician:copper_vein_block")
-    .displayName("铜矿脉")
+    .displayName("铜热液裂隙")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/copper_vein_block')
 
     e.create("gensokyo_mechanician:active_copper_vein_block")
-    .displayName("活跃的铜矿脉")
+    .displayName("铜热液喷口")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_copper_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.copperSpreader.byDim[key])
+        global.copperSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.copperSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
 
     e.create("gensokyo_mechanician:tin_vein_block")
-    .displayName("锡矿脉")
+    .displayName("锡热液裂隙")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/tin_vein_block')
 
     e.create("gensokyo_mechanician:active_tin_vein_block")
-    .displayName("活跃的锡矿脉")
+    .displayName("锡热液喷口")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_tin_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.tinSpreader.byDim[key])
+        global.tinSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.tinSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
 
     e.create("gensokyo_mechanician:zinc_vein_block")
-    .displayName("锌矿脉")
+    .displayName("锌热液裂隙")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/zinc_vein_block')
 
     e.create("gensokyo_mechanician:active_zinc_vein_block")
-    .displayName("活跃的锌矿脉")
+    .displayName("锌热液喷口")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_zinc_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.zincSpreader.byDim[key])
+        global.zincSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.zincSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
 
     e.create("gensokyo_mechanician:iron_vein_block")
-    .displayName("铁矿脉")
+    .displayName("铁热液裂隙")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/iron_vein_block')
 
     e.create("gensokyo_mechanician:active_iron_vein_block")
-    .displayName("活跃的铁矿脉")
+    .displayName("铁热液喷口")
     .mapColor(0x70)
     .soundType('copper')
     .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_iron_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.ironSpreader.byDim[key])
+        global.ironSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.ironSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
+
+    e.create("gensokyo_mechanician:aluminum_vein_block")
+    .displayName("铝热液裂隙")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/aluminum_vein_block')
+
+    e.create("gensokyo_mechanician:active_aluminum_vein_block")
+    .displayName("铝热液喷口")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_aluminum_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.aluminumSpreader.byDim[key])
+        global.aluminumSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.aluminumSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
+
+    e.create("gensokyo_mechanician:nickel_vein_block")
+    .displayName("镍热液裂隙")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/nickel_vein_block')
+
+    e.create("gensokyo_mechanician:active_nickel_vein_block")
+    .displayName("镍热液喷口")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_nickel_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.nickelSpreader.byDim[key])
+        global.nickelSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.nickelSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
+
+    e.create("gensokyo_mechanician:tungsten_vein_block")
+    .displayName("钨热液裂隙")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/tungsten_vein_block')
+
+    e.create("gensokyo_mechanician:active_tungsten_vein_block")
+    .displayName("钨热液喷口")
+    .mapColor(0x70)
+    .soundType('copper')
+    .unbreakable()
+    .textureAll('gensokyo_mechanician:block/veins/active_tungsten_vein_block')
+    .randomTick(event =>{
+        const key = dimKey(event.level);
+        if (!global.tungstenSpreader.byDim[key])
+        global.tungstenSpreader.byDim[key] = {};
+        const p = event.block.pos;
+        global.tungstenSpreader.byDim[key][posKey(p.x, p.y, p.z)] = {
+        x: p.x,
+        y: p.y,
+        z: p.z,
+        };
+    })
 
 })
