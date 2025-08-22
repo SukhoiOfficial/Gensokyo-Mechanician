@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_nether",
+  "features": "unify_oregen:nickel_ore",
+  "step": "underground_ores"
+}
